@@ -23,6 +23,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y ccache libltdl-dev libffi-dev build-essential zip unzip openjdk-17-jdk
 
+    - name: Accept Android SDK Licenses
+      run: |
+        mkdir -p ~/.android
+        touch ~/.android/repositories.cfg
+        yes | buildozer android debug || true
+
     - name: Build APK with Buildozer
       run: buildozer -v android debug
 
